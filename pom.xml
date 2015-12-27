@@ -13,6 +13,10 @@
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<hibernate.groupId>org.hibernate</hibernate.groupId>
 		<hibernate.verion>5.0.6.Final</hibernate.verion>
+		<hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
+		<jdbc.driver.oracle.version>11.2.0</jdbc.driver.oracle.version>
+		<java.jdk.source.version>1.8</java.jdk.source.version>
+		<java.jdk.target.version>1.8</java.jdk.target.version>
 	</properties>
 	<modules>
 		<module>research</module>
@@ -148,8 +152,19 @@
 				<version>${hibernate.verion}</version>
 			</dependency>
 
-			<!-- optional -->
+			<dependency>
+				<groupId>${hibernate.groupId}.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>${hibernate.jpa.version}</version>
+			</dependency>
 
+
+			<!-- optional -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.verion}</version>
+			</dependency>
 			<dependency>
 				<groupId>${hibernate.groupId}</groupId>
 				<artifactId>hibernate-osgi</artifactId>
@@ -180,6 +195,13 @@
 				<artifactId>hibernate-ehcache</artifactId>
 				<version>${hibernate.verion}</version>
 			</dependency>
+			<!-- ORACLE database driver -->
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ojdbc6</artifactId>
+				<version>${jdbc.driver.oracle.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 	<distributionManagement>

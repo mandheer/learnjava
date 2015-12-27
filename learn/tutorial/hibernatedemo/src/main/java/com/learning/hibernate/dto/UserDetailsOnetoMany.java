@@ -25,7 +25,7 @@ import javax.persistence.Table;
  *         
  */
 @Entity
-@Table(name = "USER_DETAILS")
+@Table(name = "USER_DETAILS_OTM")
 @SequenceGenerator(name = "SEQ_USER_DETAILS", sequenceName = "SEQ_UD", initialValue = 1, allocationSize = 1)
 public class UserDetailsOnetoMany implements Serializable {
 	

@@ -23,12 +23,14 @@ public class EntityRelationalMapper {
 	
 	/**
 	 * @param user
+	 *            oneToMany
 	 * @param vehicle
 	 *            
-	 *            UserVehicleMapper EntityRelationalMapper void
+	 *            userVehicleMapper EntityRelationalMapper void
 	 */
-	public static void UserVehicleMapper(UserDetailsOnetoMany user, VehicleManyToOne vehicle) {
+	public static void userVehicleMapper(UserDetailsOnetoMany user, VehicleManyToOne vehicle) {
 		user.getVehicle().add(vehicle);
+		vehicle.setOnetoManyUser(user);
 	}
 	
 }

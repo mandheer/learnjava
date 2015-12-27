@@ -40,4 +40,9 @@ surrogate key is the primary key which is not having any real world significance
 natural key is business key for the table.
 We can't use the embedded and Id annotations together. Rather we need to use EmbeddedId in such cases and make it sure that all combination comes out to be unique while using embedded Id.
 
+##Lazy Initialization
+While retrieving the data from hibernate, it fetches the first level member variables (Object instances are not initialized). Active by default.
+When we'll request the object instances, it will make DB call and fetch the data. e.g. calling object->getter.
+
+##Eager Initialization
 

@@ -15,5 +15,6 @@
 	<modules>
 		<module>designpatterns</module>
 		<module>hystrixdemo</module>
+		<module>hibernatedemo</module>
 	</modules>
 </project>

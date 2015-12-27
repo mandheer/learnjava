@@ -4,7 +4,9 @@
    <version>0.0.1-SNAPSHOT</version>
    <artifactId>research</artifactId>
    <packaging>pom</packaging>
-   <name>Java Learning complete package. The secret to coding master.</name>
+   <name>Research</name>
+   <description>Contains the research projects.</description>
+   
    <parent>
 	<groupId>in.pabreja</groupId>
 	<version>0.0.1-SNAPSHOT</version>

@@ -4,7 +4,8 @@
    <version>0.0.1-SNAPSHOT</version>
    <artifactId>sample</artifactId>
    <packaging>pom</packaging>
-   <name>Java Learning complete package. The secret to coding master.</name>
+   <name>R 'n' D samples</name>
+   <description>samples of the research project.</description>
    <parent>
 	<groupId>in.pabreja</groupId>
 	<version>0.0.1-SNAPSHOT</version>

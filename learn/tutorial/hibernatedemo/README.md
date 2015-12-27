@@ -12,7 +12,7 @@ e.g. mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactI
 
 \<project ...>
 
-	<dependencies>>
+	<dependencies>
 		
 		<!-- ORACLE database driver -->
 		<dependency>

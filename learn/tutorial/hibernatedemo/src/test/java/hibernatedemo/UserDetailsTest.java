@@ -26,7 +26,7 @@ public class UserDetailsTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		userDetails = new UserDetails();
+		userDetails = new UserDetails(2, "");
 	}
 	
 	/**

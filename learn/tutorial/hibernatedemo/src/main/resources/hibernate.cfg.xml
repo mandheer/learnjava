@@ -15,13 +15,13 @@
 		
 		<!-- JDBC connection pool -->
 		<property name="connection.pool_size">1</property>
-		<property name="hibernate.default_schema">orcl</property>
+		<property name="hibernate.default_schema">SCOTT</property>
 
 		<!-- Disable the 2nd level cache -->
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<!-- <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 		<property name="current_session_context_class">thread</property>
-		
+		-->
 		<!-- echo all executed SQL to STD out -->
 		<property name="show_sql">true</property>
 		

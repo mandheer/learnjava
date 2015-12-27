@@ -6,11 +6,9 @@
 package com.learning.hibernate.main;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.junit.Assert;
 
 import com.learning.hibernate.dto.UserDetails;
+import com.learning.hibernate.util.SessionFactoryCreatorDemo;
 
 /**
  * @author mandheer
@@ -24,25 +22,18 @@ public class HibernateTest {
 	 *            main HibernateTest void
 	 */
 	public static void main(String[] args) {
-		UserDetails userDetails = new UserDetails();
+		UserDetails userDetails = new UserDetails(2, "Second Name");
 		
 		userDetails.setUserId(1);
 		userDetails.setUserName("First Name");
 		
-		SessionFactory sessionFactory = null;
-		try {
-			sessionFactory = new Configuration().configure().buildSessionFactory();
-		} catch (Throwable t) {
-			System.err.println("Initial Session Factory creation failed. " + t);
-			throw new ExceptionInInitializerError(t);
-			
-		}
-		Assert.assertNotNull(sessionFactory);
-		Session session = sessionFactory.openSession();
+		Session session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
 		
 		session.beginTransaction();
 		session.save(userDetails);
 		session.getTransaction().commit();
+		
+		SessionFactoryCreatorDemo.shutdown();
 	}
 	
 }

@@ -23,3 +23,12 @@ e.g. mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactI
 		
 	</dependencies>
 </project>
+
+#4 JTA jar
+JTA jar is important else you'll get javax.transaction.SystemException class not found.
+This is internally used by hibernate jar.
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>

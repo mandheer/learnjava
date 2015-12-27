@@ -23,7 +23,7 @@
 		<property name="current_session_context_class">thread</property>
 		-->
 		<!-- echo all executed SQL to STD out -->
-		<property name="show_sql">true</property>
+		<property name="hibernate.show_sql">true</property>
 		
 		<!-- Drop and recreate the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
@@ -34,23 +34,10 @@
 		<mapping class="com.learning.hibernate.dto.UserDetailsValueOverride"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsList"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsBasics"/>
-		<mapping class="com.learning.hibernate.dto.UserDetailsEntity"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsOnetoOne"/>
 		<mapping class="com.learning.hibernate.dto.Vehicle"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsOnetoMany"/>
+		<mapping class="com.learning.hibernate.dto.VehicleManyToOne"/>
 	</session-factory>
-
-	<!--  <session-factory>
-
-    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
-    <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
-    <property name="connection.url">jdbc:oracle:thin:@<host>:<port>:<sid></property>
-    <property name="connection.username">username</property>
-    <property name="connection.password">password</property>
-
-    <property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
-
-    <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
-    <property name="current_session_context_class">thread</property>
-    <property name="hibernate.show_sql">false</property>
-  </session-factory> -->
 
 </hibernate-configuration>

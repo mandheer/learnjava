@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USER_DETAILS")
 @SequenceGenerator(name = "SEQ_USER_DETAILS", sequenceName = "SEQ_UD", initialValue = 1, allocationSize = 1)
-public class UserDetailsEntity implements Serializable {
+public class UserDetailsOnetoMany implements Serializable {
 	
 	/**
 	 * long : serialVersionUID
@@ -67,7 +67,7 @@ public class UserDetailsEntity implements Serializable {
 	/**
 	 * default constructor
 	 */
-	public UserDetailsEntity() {
+	public UserDetailsOnetoMany() {
 	}
 	
 	/**

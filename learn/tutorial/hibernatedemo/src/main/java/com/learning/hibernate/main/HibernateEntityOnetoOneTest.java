@@ -7,7 +7,7 @@ package com.learning.hibernate.main;
 
 import org.hibernate.Session;
 
-import com.learning.hibernate.dto.UserDetailsEntity;
+import com.learning.hibernate.dto.UserDetailsOnetoOne;
 import com.learning.hibernate.dto.Vehicle;
 import com.learning.hibernate.util.SessionFactoryCreatorDemo;
 
@@ -23,7 +23,7 @@ public class HibernateEntityOnetoOneTest {
 	 *            main HibernateTest void
 	 */
 	public static void main(String[] args) {
-		UserDetailsEntity userDetails = new UserDetailsEntity();
+		UserDetailsOnetoOne userDetails = new UserDetailsOnetoOne();
 		userDetails.setUserName("Third Name");
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("Bajaj Pulsar");

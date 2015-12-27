@@ -5,8 +5,10 @@
  */
 package com.learning.hibernate.util;
 
+import com.learning.hibernate.dto.UserDetailsManytoMany;
 import com.learning.hibernate.dto.UserDetailsOnetoMany;
 import com.learning.hibernate.dto.UserDetailsOnetoMany2;
+import com.learning.hibernate.dto.VehicleManyToMany;
 import com.learning.hibernate.dto.VehicleManyToOne;
 import com.learning.hibernate.dto.VehicleManyToOne2;
 
@@ -35,9 +37,27 @@ public class EntityRelationalMapper {
 		vehicle.setOnetoManyUser(user);
 	}
 	
+	/**
+	 * @param user
+	 *            user
+	 * @param vehicle
+	 *            
+	 *            userVehicleMapper EntityRelationalMapper void
+	 */
 	public static void userVehicleMapper(UserDetailsOnetoMany2 user, VehicleManyToOne2 vehicle) {
 		user.getVehicle().add(vehicle);
 		vehicle.setOnetoManyUser(user);
 	}
 	
+	/**
+	 * @param user
+	 *            user
+	 * @param vehicle
+	 *            
+	 *            userVehicleMapper EntityRelationalMapper void
+	 */
+	public static void userVehicleMapper(UserDetailsManytoMany user, VehicleManyToMany vehicle) {
+		user.getVehicle().add(vehicle);
+		vehicle.getUser().add(user);
+	}
 }

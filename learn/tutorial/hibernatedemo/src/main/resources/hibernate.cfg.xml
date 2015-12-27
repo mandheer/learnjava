@@ -40,6 +40,8 @@
 		<mapping class="com.learning.hibernate.dto.VehicleManyToOne"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsOnetoMany2"/>
 		<mapping class="com.learning.hibernate.dto.VehicleManyToOne2"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsManytoMany"/>
+		<mapping class="com.learning.hibernate.dto.VehicleManyToMany"/>
 	</session-factory>
 
 </hibernate-configuration>

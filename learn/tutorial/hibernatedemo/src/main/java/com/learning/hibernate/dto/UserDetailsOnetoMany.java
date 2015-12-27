@@ -6,13 +6,17 @@
 package com.learning.hibernate.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,27 +32,27 @@ public class UserDetailsOnetoMany implements Serializable {
 	/**
 	 * long : serialVersionUID
 	 */
-	private static final long	serialVersionUID	= 5203594244067931698L;
-													
+	private static final long				serialVersionUID	= 5203594244067931698L;
+																
 	/**
 	 * int : userId
 	 */
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USER_DETAILS")
 	@Id
-	private long				userId;
-								
+	private long							userId;
+											
 	/**
 	 * String : userName
 	 */
-	private String				userName;
-								
+	private String							userName;
+											
 	/**
-	 * Vehicle : vehicle
+	 * Collection<VehicleManyToOne> : vehicle
 	 */
-	@OneToOne
-	@JoinColumn(name = "VEHICLE_ID")
-	private Vehicle				vehicle;
-								
+	@OneToMany
+	@JoinTable(name = "USER_VEHICLE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "VEHICLE_ID") })
+	private Collection<VehicleManyToOne>	vehicle				= new ArrayList<>();
+																
 	/**
 	 * @return the userName
 	 */
@@ -73,7 +77,7 @@ public class UserDetailsOnetoMany implements Serializable {
 	/**
 	 * @return the vehicle
 	 */
-	public Vehicle getVehicle() {
+	public Collection<VehicleManyToOne> getVehicle() {
 		return this.vehicle;
 	}
 	
@@ -81,7 +85,7 @@ public class UserDetailsOnetoMany implements Serializable {
 	 * @param vehicle
 	 *            the vehicle to set
 	 */
-	public void setVehicle(Vehicle vehicle) {
+	public void setVehicle(Collection<VehicleManyToOne> vehicle) {
 		this.vehicle = vehicle;
 	}
 	
@@ -90,13 +94,28 @@ public class UserDetailsOnetoMany implements Serializable {
 	 */
 	@Override
 	public String toString() {
+		final int maxLen = 10;
 		StringBuilder builder = new StringBuilder();
-		builder.append("UserDetailsEntity [userId=");
+		builder.append("UserDetailsOnetoMany [userId=");
 		builder.append(this.userId);
 		builder.append(", userName=");
 		builder.append(this.userName);
 		builder.append(", vehicle=");
-		builder.append(this.vehicle);
+		builder.append(this.vehicle != null ? toString(this.vehicle, maxLen) : null);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	private static String toString(Collection<?> collection, int maxLen) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("[");
+		int i = 0;
+		for (Iterator<?> iterator = collection.iterator(); iterator.hasNext() && i < maxLen; i++) {
+			if (i > 0) {
+				builder.append(", ");
+			}
+			builder.append(iterator.next());
+		}
 		builder.append("]");
 		return builder.toString();
 	}

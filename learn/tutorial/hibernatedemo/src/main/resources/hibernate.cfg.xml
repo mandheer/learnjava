@@ -32,6 +32,7 @@
 		<mapping class="com.learning.hibernate.dto.UserDetailsSimple"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsValue"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsValueOverride"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsList"/>
 	</session-factory>
 
 	<!--  <session-factory>

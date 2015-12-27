@@ -1,48 +1,52 @@
 /**
- *hibernatedemo:hibernatedemo
- * Created on Dec 27, 2015
+ * hibernatedemo:hibernatedemo Created on Dec 27, 2015
  *
  * 
  */
 package hibernatedemo;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.learning.hibernate.dto.UserDetails;
+
 /**
  * @author mandheer
- *
+ *         
  */
 public class UserDetailsTest {
 	
+	private UserDetails userDetails;
+	
 	/**
 	 * @throws java.lang.Exception
-	 *
-	 * setUp
-	 * UserDetailsTest
-	 * void
+	 *             
+	 *             setUp UserDetailsTest void
 	 */
 	@Before
 	public void setUp() throws Exception {
+		userDetails = new UserDetails();
 	}
 	
 	/**
 	 * @throws java.lang.Exception
-	 *
-	 * tearDown
-	 * UserDetailsTest
-	 * void
+	 *             
+	 *             tearDown UserDetailsTest void
 	 */
 	@After
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * 
+	 *
+	 * test UserDetailsTest void
+	 */
 	@Test
 	public final void test() {
-		fail("Not yet implemented"); // TODO
+		userDetails.setUserId(1);
+		userDetails.setUserName("First User");
 	}
 	
 }

@@ -5,6 +5,8 @@
  */
 package com.learning.hibernate.main;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 
 import com.learning.hibernate.dto.UserDetails;
@@ -22,18 +24,28 @@ public class HibernateTest {
 	 *            main HibernateTest void
 	 */
 	public static void main(String[] args) {
-		UserDetails userDetails = new UserDetails(2, "Second Name");
-		
-		userDetails.setUserId(1);
-		userDetails.setUserName("First Name");
+		UserDetails userDetails = new UserDetails();
+		userDetails.setUserName("Third Name");
+		userDetails.setAddress("New York");
+		userDetails.setDescription("This is the desription field.");
+		userDetails.setJoinedDate(new Date());
 		
 		Session session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
-		
-		session.beginTransaction();
-		session.save(userDetails);
-		session.getTransaction().commit();
-		
-		SessionFactoryCreatorDemo.shutdown();
+		try {
+			session.beginTransaction();
+			session.save(userDetails);
+			session.getTransaction().commit();
+			session.close();
+			
+			userDetails = null;
+			session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
+			session.beginTransaction();
+			// userDetails = session.get(UserDetails.class, 1);
+			System.out.println(userDetails);
+		} finally {
+			session.close();
+			SessionFactoryCreatorDemo.shutdown();
+		}
 	}
 	
 }

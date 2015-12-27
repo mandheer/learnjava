@@ -32,3 +32,8 @@ This is internally used by hibernate jar.
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
 		</dependency>
+		
+#5 Some definitions
+value Object is and object which does not have it's own meaning for table/real world. However, it adds meaning to the other object.
+surrogate key is the primary key which is not having any real world significance and still part of table. e.g. ID,creation_TS
+natural key is business key for the table.

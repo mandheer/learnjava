@@ -27,7 +27,7 @@
 		
 		<!-- Drop and recreate the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
-		
+
 		<!-- names of annotated entity class -->
 		<mapping class="com.learning.hibernate.dto.UserDetails"/>
 	</session-factory>

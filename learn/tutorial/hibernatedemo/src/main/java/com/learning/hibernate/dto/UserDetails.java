@@ -6,15 +6,25 @@
 package com.learning.hibernate.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author mandheer
  *         
  */
 @Entity
+@Table(name = "USER_DETAILS")
+@SequenceGenerator(name = "SEQ_USER_DETAILS", sequenceName = "SEQ_UD", initialValue = 1, allocationSize = 1)
 public class UserDetails implements Serializable {
 	
 	/**
@@ -25,8 +35,9 @@ public class UserDetails implements Serializable {
 	/**
 	 * int : userId
 	 */
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USER_DETAILS")
 	@Id
-	private int					userId;
+	private long				userId;
 								
 	/**
 	 * String : userName
@@ -34,20 +45,20 @@ public class UserDetails implements Serializable {
 	private String				userName;
 								
 	/**
-	 * @return the userId
+	 * Date : joinedDate
 	 */
-	public int getUserId() {
-		return this.userId;
-	}
-	
+	@Temporal(TemporalType.DATE)
+	private Date				joinedDate;
 	/**
-	 * @param userId
-	 *            the userId to set
+	 * String : address
 	 */
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	
+	private String				address;
+	/**
+	 * String : description
+	 */
+	@Lob
+	private String				description;
+								
 	/**
 	 * @return the userName
 	 */
@@ -64,14 +75,74 @@ public class UserDetails implements Serializable {
 	}
 	
 	/**
-	 * @param userId
-	 *            user id
-	 * @param userName
-	 *            user name
+	 * default constructor
 	 */
-	public UserDetails(int userId, String userName) {
-		this.userId = userId;
-		this.userName = userName;
+	public UserDetails() {
+	}
+	
+	/**
+	 * @return the joinedDate
+	 */
+	public Date getJoinedDate() {
+		return this.joinedDate;
+	}
+	
+	/**
+	 * @param joinedDate
+	 *            the joinedDate to set
+	 */
+	public void setJoinedDate(Date joinedDate) {
+		this.joinedDate = joinedDate;
+	}
+	
+	/**
+	 * @return the address
+	 */
+	public String getAddress() {
+		return this.address;
+	}
+	
+	/**
+	 * @param address
+	 *            the address to set
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return this.description;
+	}
+	
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserDetails [userId=");
+		builder.append(this.userId);
+		builder.append(", userName=");
+		builder.append(this.userName);
+		builder.append(", joinedDate=");
+		builder.append(this.joinedDate);
+		builder.append(", address=");
+		builder.append(this.address);
+		builder.append(", description=");
+		builder.append(this.description);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

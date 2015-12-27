@@ -26,7 +26,7 @@ public class UserDetailsTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		userDetails = new UserDetails(2, "");
+		userDetails = new UserDetails();
 	}
 	
 	/**
@@ -45,7 +45,6 @@ public class UserDetailsTest {
 	 */
 	@Test
 	public final void test() {
-		userDetails.setUserId(1);
 		userDetails.setUserName("First User");
 	}
 	

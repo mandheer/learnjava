@@ -29,7 +29,9 @@
 		<property name="hbm2ddl.auto">create</property>
 
 		<!-- names of annotated entity class -->
-		<mapping class="com.learning.hibernate.dto.UserDetails"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsSimple"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsValue"/>
+		<mapping class="com.learning.hibernate.dto.UserDetailsValueOverride"/>
 	</session-factory>
 
 	<!--  <session-factory>

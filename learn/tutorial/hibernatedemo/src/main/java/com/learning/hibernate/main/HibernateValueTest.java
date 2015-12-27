@@ -9,14 +9,15 @@ import java.util.Date;
 
 import org.hibernate.Session;
 
-import com.learning.hibernate.dto.UserDetails;
+import com.learning.hibernate.dto.AddressValue;
+import com.learning.hibernate.dto.UserDetailsValue;
 import com.learning.hibernate.util.SessionFactoryCreatorDemo;
 
 /**
  * @author mandheer
  *         
  */
-public class HibernateTest {
+public class HibernateValueTest {
 	
 	/**
 	 * @param args
@@ -24,11 +25,16 @@ public class HibernateTest {
 	 *            main HibernateTest void
 	 */
 	public static void main(String[] args) {
-		UserDetails userDetails = new UserDetails();
+		UserDetailsValue userDetails = new UserDetailsValue();
+		AddressValue addr = new AddressValue();
 		userDetails.setUserName("Third Name");
-		userDetails.setAddress("New York");
+		userDetails.setAddress(addr);
 		userDetails.setDescription("This is the desription field.");
 		userDetails.setJoinedDate(new Date());
+		addr.setStreet("St. john road");
+		addr.setCity("New York");
+		addr.setState("London");
+		addr.setPin("TNY 24H");
 		
 		Session session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
 		try {

@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "USER_DETAILS")
 @SequenceGenerator(name = "SEQ_USER_DETAILS", sequenceName = "SEQ_UD", initialValue = 1, allocationSize = 1)
-public class UserDetails implements Serializable {
+public class UserDetailsSimple implements Serializable {
 	
 	/**
 	 * long : serialVersionUID
@@ -77,7 +77,7 @@ public class UserDetails implements Serializable {
 	/**
 	 * default constructor
 	 */
-	public UserDetails() {
+	public UserDetailsSimple() {
 	}
 	
 	/**

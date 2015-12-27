@@ -34,6 +34,10 @@ This is internally used by hibernate jar.
 		</dependency>
 		
 #5 Some definitions
-value Object is and object which does not have it's own meaning for table/real world. However, it adds meaning to the other object.
+valueObject is and object which does not have it's own meaning for table/real world. However, it adds meaning to the other object.
+entityObject has it's value/ meaning on it's own.
 surrogate key is the primary key which is not having any real world significance and still part of table. e.g. ID,creation_TS
 natural key is business key for the table.
+We can't use the embedded and Id annotations together. Rather we need to use EmbeddedId in such cases and make it sure that all combination comes out to be unique while using embedded Id.
+
+

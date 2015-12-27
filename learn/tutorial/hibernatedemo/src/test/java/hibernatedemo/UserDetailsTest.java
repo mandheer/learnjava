@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.learning.hibernate.dto.UserDetails;
+import com.learning.hibernate.dto.UserDetailsSimple;
 
 /**
  * @author mandheer
@@ -17,7 +17,7 @@ import com.learning.hibernate.dto.UserDetails;
  */
 public class UserDetailsTest {
 	
-	private UserDetails userDetails;
+	private UserDetailsSimple userDetails;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -26,7 +26,7 @@ public class UserDetailsTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		userDetails = new UserDetails();
+		userDetails = new UserDetailsSimple();
 	}
 	
 	/**

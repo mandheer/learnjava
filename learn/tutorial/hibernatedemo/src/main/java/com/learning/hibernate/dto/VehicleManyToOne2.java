@@ -22,9 +22,9 @@ import javax.persistence.Table;
  *         
  */
 @Entity
-@Table(name = "VEHICLE_DETAILS")
+@Table(name = "VEHICLE_DETAILS_2")
 @SequenceGenerator(name = "SEQ_USER_DETAILS", sequenceName = "SEQ_UD", initialValue = 1, allocationSize = 1)
-public class VehicleManyToOne implements Serializable {
+public class VehicleManyToOne2 implements Serializable {
 	
 	/**
 	 * long : serialVersionUID
@@ -49,7 +49,7 @@ public class VehicleManyToOne implements Serializable {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
-	private UserDetailsOnetoMany	onetoManyUser;
+	private UserDetailsOnetoMany2	user;
 									
 	/**
 	 * @return the vehicleId
@@ -84,16 +84,16 @@ public class VehicleManyToOne implements Serializable {
 	/**
 	 * @return the onetoManyUser
 	 */
-	public UserDetailsOnetoMany getOnetoManyUser() {
-		return this.onetoManyUser;
+	public UserDetailsOnetoMany2 getOnetoManyUser() {
+		return this.user;
 	}
 	
 	/**
 	 * @param onetoManyUser
 	 *            the onetoManyUser to set
 	 */
-	public void setOnetoManyUser(UserDetailsOnetoMany onetoManyUser) {
-		this.onetoManyUser = onetoManyUser;
+	public void setOnetoManyUser(UserDetailsOnetoMany2 onetoManyUser) {
+		this.user = onetoManyUser;
 	}
 	
 	/**
@@ -107,7 +107,7 @@ public class VehicleManyToOne implements Serializable {
 		builder.append(", vehicleName=");
 		builder.append(this.vehicleName);
 		builder.append(", onetoManyUser=");
-		builder.append(this.onetoManyUser);
+		builder.append(this.user);
 		builder.append("]");
 		return builder.toString();
 	}

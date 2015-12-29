@@ -29,7 +29,7 @@
 		<property name="hbm2ddl.auto">create</property>
 
 		<!-- names of annotated entity class -->
-		<mapping class="com.learning.hibernate.dto.UserDetailsSimple"/>
+		<!-- <mapping class="com.learning.hibernate.dto.UserDetailsSimple"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsValue"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsValueOverride"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsList"/>
@@ -42,6 +42,10 @@
 		<mapping class="com.learning.hibernate.dto.VehicleManyToOne2"/>
 		<mapping class="com.learning.hibernate.dto.UserDetailsManytoMany"/>
 		<mapping class="com.learning.hibernate.dto.VehicleManyToMany"/>
+		<mapping class="com.learning.hibernate.dto.VehicleParent"/>
+		<mapping class="com.learning.hibernate.dto.TwoWheeler"/>
+		<mapping class="com.learning.hibernate.dto.FourWheeler"/> -->
+		<mapping class="com.learning.hibernate.dto.UserDetails"/>
 	</session-factory>
 
 </hibernate-configuration>

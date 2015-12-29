@@ -46,3 +46,14 @@ When we'll request the object instances, it will make DB call and fetch the data
 
 ##Eager Initialization
 
+
+## To handle not found on @ManytoOne relation.
+If business is valid that a @ManytoOne relation can be null or empty. 
+We can use hibernate annotation @NotFound(action=NotFoundAction.IGNORE) and it won't throw an exception.
+
+##Hibernate Collections
+Bag semantic - List/ArrayList
+Bag semantic with ID - List/ArrayList
+List semantic - List/ArrayList
+Set semantic - Set
+Map semantic - Map

@@ -5,6 +5,9 @@
  */
 package com.learning.hibernate.main;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.learning.hibernate.dto.UserDetails;
@@ -14,7 +17,7 @@ import com.learning.hibernate.util.SessionFactoryCreatorDemo;
  * @author mandheer
  *         
  */
-public class HibernateCRUDTest {
+public class HibernateHQLTest {
 	
 	/**
 	 * @param args
@@ -25,20 +28,14 @@ public class HibernateCRUDTest {
 		UserDetails userDetails = null;
 		Session session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
 		try {
-			/*
-			 * session.beginTransaction(); for (int i = 50; i <= 100; i++) { userDetails = new
-			 * UserDetails(); userDetails.setUserName("User Name " + i); session.save(userDetails);
-			 * } session.getTransaction().commit(); session.close();
-			 */
 			session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
 			session.beginTransaction();
-			userDetails = session.get(UserDetails.class, 51l);
-			userDetails.setUserName("Updated User");
-			// session.delete(userDetails);
-			// session.update(userDetails);
-			session.getTransaction().commit();
+			
+			Query query = session.createQuery("from UserDetails where userId >49");
+			List<UserDetails> list = query.list();
+			
 			session.close();
-			System.out.println(userDetails);
+			System.out.println(list.size());
 		} finally {
 			if (session.isOpen())
 				session.close();

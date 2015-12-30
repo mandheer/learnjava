@@ -57,3 +57,6 @@ Bag semantic with ID - List/ArrayList
 List semantic - List/ArrayList
 Set semantic - Set
 Map semantic - Map
+
+##Object Collections
+Transient --> Persistent --> Detached

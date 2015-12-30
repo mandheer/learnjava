@@ -1,4 +1,4 @@
-package com.learning.test.nitrocabs.log;
+package com.learning.samples.bookcab.log;
 
 /**
  * This is having the messages used for logging.

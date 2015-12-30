@@ -1,4 +1,4 @@
-package com.learning.test.nitrocabs.util;
+package com.learning.samples.bookcab.util;
 
 /**
  * Interface would be having all constants .

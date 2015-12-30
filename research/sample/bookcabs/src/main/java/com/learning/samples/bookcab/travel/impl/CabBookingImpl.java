@@ -1,21 +1,21 @@
 /**
  * 
  */
-package com.learning.test.nitrocabs.travel.impl;
+package com.learning.samples.bookcab.travel.impl;
 
 import java.util.Calendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.learning.test.nitrocabs.domain.BookingRequest;
-import com.learning.test.nitrocabs.domain.BookingResponse;
-import com.learning.test.nitrocabs.domain.SectorsInfoData;
-import com.learning.test.nitrocabs.exception.CabBusinessException;
-import com.learning.test.nitrocabs.log.LogMessage;
-import com.learning.test.nitrocabs.travel.CabBooking;
-import com.learning.test.nitrocabs.util.CabConstants;
-import com.learning.test.nitrocabs.util.CabUtility;
+import com.learning.samples.bookcab.domain.BookingRequest;
+import com.learning.samples.bookcab.domain.BookingResponse;
+import com.learning.samples.bookcab.domain.SectorsInfoData;
+import com.learning.samples.bookcab.exception.CabBusinessException;
+import com.learning.samples.bookcab.log.LogMessage;
+import com.learning.samples.bookcab.travel.CabBooking;
+import com.learning.samples.bookcab.util.CabConstants;
+import com.learning.samples.bookcab.util.CabUtility;
 
 /**
  * This is Impl for {@link CabBooking}.

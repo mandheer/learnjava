@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.learning.test.nitrocabs.exception;
+package com.learning.samples.bookcab.exception;
 
 /**
  * @author mandheer

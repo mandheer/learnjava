@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.learning.test.nitrocabs.domain;
+package com.learning.samples.bookcab.domain;
 
 import java.io.Serializable;
 import java.util.Date;

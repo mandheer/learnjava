@@ -11,12 +11,12 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.learning.test.nitrocabs.domain.BookingRequest;
-import com.learning.test.nitrocabs.domain.BookingResponse;
-import com.learning.test.nitrocabs.exception.CabBusinessException;
-import com.learning.test.nitrocabs.travel.CabBooking;
-import com.learning.test.nitrocabs.travel.impl.CabBookingImpl;
-import com.learning.test.nitrocabs.util.CabUtility;
+import com.learning.samples.bookcab.domain.BookingRequest;
+import com.learning.samples.bookcab.domain.BookingResponse;
+import com.learning.samples.bookcab.exception.CabBusinessException;
+import com.learning.samples.bookcab.travel.CabBooking;
+import com.learning.samples.bookcab.travel.impl.CabBookingImpl;
+import com.learning.samples.bookcab.util.CabUtility;
 
 /**
  * 
@@ -30,7 +30,7 @@ public class CabBookingImplTest {
 
 	/**
 	 * Test method for
-	 * {@link com.learning.test.nitrocabs.travel.impl.CabBookingImpl#cabBook(com.learning.test.nitrocabs.domain.BookingRequest)}
+	 * {@link com.learning.samples.bookcab.travel.impl.CabBookingImpl#cabBook(com.learning.samples.bookcab.domain.BookingRequest)}
 	 * .
 	 * 
 	 * @throws CabBusinessException

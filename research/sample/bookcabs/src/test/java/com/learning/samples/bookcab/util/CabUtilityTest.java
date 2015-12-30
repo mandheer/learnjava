@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.learning.test.nitrocabs.util;
+package com.learning.samples.bookcab.util;
 
 import static org.junit.Assert.*;
 

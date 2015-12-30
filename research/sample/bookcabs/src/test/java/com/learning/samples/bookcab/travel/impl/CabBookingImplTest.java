@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.learning.test.nitrocabs.travel.impl;
+package com.learning.samples.bookcab.travel.impl;
 
 import static org.junit.Assert.*;
 

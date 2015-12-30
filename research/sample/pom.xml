@@ -12,6 +12,6 @@
     <artifactId>research</artifactId>
    </parent>
    <modules>
-      <module>nitrocabs</module>
+      <module>bookcabs</module>
    </modules>
 </project>

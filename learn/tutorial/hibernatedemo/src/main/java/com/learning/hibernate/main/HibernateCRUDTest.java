@@ -5,7 +5,14 @@
  */
 package com.learning.hibernate.main;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import com.learning.hibernate.dto.UserDetails;
 import com.learning.hibernate.util.SessionFactoryCreatorDemo;
@@ -32,13 +39,24 @@ public class HibernateCRUDTest {
 			 */
 			session = SessionFactoryCreatorDemo.getSessionFactory().openSession();
 			session.beginTransaction();
-			userDetails = session.get(UserDetails.class, 51l);
-			userDetails.setUserName("Updated User");
+			// userDetails = session.get(UserDetails.class, 51l);
+			// userDetails.setUserName("Updated User");
 			// session.delete(userDetails);
 			// session.update(userDetails);
-			session.getTransaction().commit();
-			session.close();
-			System.out.println(userDetails);
+			// session.getTransaction().commit();
+			// session.close();
+			Criteria criteria = session.createCriteria(UserDetails.class);
+			ProjectionList p1 = Projections.projectionList();
+			p1.add(Projections.property("userName"));
+			// criteria.add(Restrictions.gt("userId", 49l)).add(Restrictions.like("userName",
+			// "Up%"));
+			Criterion criterion = Restrictions.lt("userId", 25l);
+			Criterion criterion2 = Restrictions.gt("userId", 50l);
+			criteria.add(Restrictions.or(criterion, criterion2));
+			// criteria.setProjection(p1);
+			List list = criteria.list();
+			
+			System.out.println(list.size());
 		} finally {
 			if (session.isOpen())
 				session.close();

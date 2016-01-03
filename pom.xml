@@ -1,23 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>in.pabreja</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>${project.groupid}</groupId>
+	<version>${project.version}</version>
 	<artifactId>root-build</artifactId>
 	<packaging>pom</packaging>
 	<name>Root Build</name>
 	<description>Java Learning complete package. The secret to coding. This is master branch.</description>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.groupid>in.pabreja</project.groupid>
 		<project.version>0.0.1-SNAPSHOT</project.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<java.jdk.source.version>1.8</java.jdk.source.version>
+		<java.jdk.target.version>1.8</java.jdk.target.version>
+		
 		<hibernate.groupId>org.hibernate</hibernate.groupId>
 		<hibernate.verion>5.0.6.Final</hibernate.verion>
 		<hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
 		<jdbc.driver.oracle.version>11.2.0</jdbc.driver.oracle.version>
-		<java.jdk.source.version>1.8</java.jdk.source.version>
-		<java.jdk.target.version>1.8</java.jdk.target.version>
+
+		<aws.sdk.groupid>com.amazonaws</aws.sdk.groupid>
 		<aws.sdk.version>1.10.20</aws.sdk.version>
+		
 		<log4j.version>2.5</log4j.version>
 		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
@@ -106,7 +113,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.amazonaws</groupId>
+				<groupId>${aws.sdk.groupid}</groupId>
 				<artifactId>aws-java-sdk</artifactId>
 				<version>${aws.sdk.version}</version>
 			</dependency>

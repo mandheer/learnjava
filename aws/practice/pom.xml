@@ -3,16 +3,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>in.pabreja</groupId>
 	<artifactId>practice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<name>AWS practice</name>
 	<description>This is the practice tutorials for AWS practice.</description>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>in.pabreja</groupId>
 		<artifactId>aws</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${project.version}</version>
 	</parent>
 	<dependencies>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>

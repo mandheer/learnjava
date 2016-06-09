@@ -1,0 +1,7 @@
+
+description = 'AWS practice'
+dependencies {
+    compile group: 'com.amazonaws', name: 'aws-java-sdk', version:'1.10.20'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version:'2.5'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version:'2.5'
+}

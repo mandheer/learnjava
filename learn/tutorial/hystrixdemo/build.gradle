@@ -1,0 +1,5 @@
+
+description = 'Hystrix Demo'
+dependencies {
+    compile group: 'com.netflix.hystrix', name: 'hystrix-core', version:'1.4.21'
+}

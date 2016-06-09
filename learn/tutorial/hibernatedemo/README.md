@@ -7,8 +7,8 @@ Oracle database installed folder, for example, "{ORACLE_HOME}\jdbc\lib\ojdbc6.ja
 mvn install:install-file -Dfile={Path/to/your/ojdbc6.jar} -DgroupId=com.oracle
 -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar -DgeneratePom=true
 
-e.g. mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar -DgeneratePom=true
-#3 configure pom.xml
+e.g. mvn install:install-file -Dfile=C:\app\home\product\11.2.0\dbhome_1\jdbc\lib\ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0 -Dpackaging=jar -DgeneratePom=true
+#3. configure pom.xml
 
 \<project ...>
 
@@ -24,7 +24,7 @@ e.g. mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.oracle -DartifactI
 	</dependencies>
 </project>
 
-#4 JTA jar
+#4. JTA jar
 JTA jar is important else you'll get javax.transaction.SystemException class not found.
 This is internally used by hibernate jar.
 		<dependency>
@@ -33,7 +33,7 @@ This is internally used by hibernate jar.
 			<version>1.1</version>
 		</dependency>
 		
-#5 Some definitions
+#5. Some definitions
 valueObject is and object which does not have it's own meaning for table/real world. However, it adds meaning to the other object.
 entityObject has it's value/ meaning on it's own.
 surrogate key is the primary key which is not having any real world significance and still part of table. e.g. ID,creation_TS

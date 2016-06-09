@@ -2,3 +2,4 @@ LICENSE
 /.settings/
 /.git/
 .project
+/build/

@@ -1,0 +1,13 @@
+package com.learning.problems.util;
+
+public class EmailExtractor {
+
+    public static void main(String[] args){
+        final String text = "Abhinav Kumar 4 <akumar238@sapient.com>; Abhishek Chauhan II <achauhan@sapient.com>; Akshat Mehta <amehta16@sapient.com>; Ami Ranjan 2 <aranjan9@sapient.com>; Amit Datar <adatar@sapient.com>; Amit Kumar Shrivastava <ashrivastava5@sapient.com>; Amit Singh 7 <asingh276@sapient.com>; Amitesh Srivastva <asrivastva@sapient.com>; Ankit Goel 3 <agoel41@sapient.com>; Ankit Seth <aseth11@sapient.com>; Annu Panesar <apanesar@sapient.com>; Arjun Goswami <agoswami5@sapient.com>; Ashish Kumar 26 <akumar297@sapient.com>; Avinash Singh 2 <asingh232@sapient.com>; Ayush Singhal <asinghal102@sapient.com>; Chetan Sadana <csadana@sapient.com>; Darpan Gogia <dgogia2@sapient.com>; Deepak Sharma 14 <dsharma43@sapient.com>; Dhanalakshmi Siripuram <dsiripuram@sapient.com>; Hemant Sharma 4 <hsharma25@sapient.com>; Himanshu Dewani <hdewani@sapient.com>; Himanshu Singla <hsingla@sapient.com>; Isha Goel <igoel3@sapient.com>; Lakshay Khanna <lkhanna@sapient.com>; Mandheer Pabreja <mpabreja@sapient.com>; Maruthi Nagaraj <mnagaraj3@sapient.com>; Mohit Jain 11 <mjain38@sapient.com>; Naga Venkata Syam Kumar Chellu <nchellu@sapient.com>; Om Singh 2 <osingh2@sapient.com>; Pallav Tyagi <ptyagi6@sapient.com>; Pankaj Gautam <pgautam3@sapient.com>; Panzy Chopra <pchopra3@sapient.com>; Piyush Utreja <putreja@sapient.com>; Prachi Gupta 2 <pgupta102@sapient.com>; Prateek Goel 4 <pgoel11@sapient.com>; Priyanka Dubey <pdubey4@sapient.com>; Rahul Arora 5 <rarora30@sapient.com>; Rajendar Kumar <rkumar177@sapient.com>; Rakesh Yadav 2 <ryadav20@sapient.com>; Rohit Asati <rasati@sapient.com>; Sameer Sharma <ssharma40@sapient.com>; Sandeep Kumar 13 <skumar130@sapient.com>; Sandeep Soni 2 <ssoni13@sapient.com>; Sanjeev Assija <sassija@sapient.com>; Saurabh Chopra <schopra12@sapient.com>; Shashank Aggarwal <saggarwal20@sapient.com>; Shreya Daing 2 <sdaing2@sapient.com>; Sidharth Mazumdar <smazumdar4@sapient.com>; Simran Kaur 2 <skaur28@sapient.com>; Simranjeet Singh 3 <ssingh1163@sapient.com>; Sumit Bansal 2 <sbansal31@sapient.com>; Sumukh Jois <sjois@sapient.com>; Tanuj Wadhawan <twadhawan@sapient.com>; Vaibhav Singhal 2 <vsinghal3@sapient.com>; Vijay Bhaskar 2 <vbhaskar2@sapient.com>; Vijay Nautiyal <vnautiyal@sapient.com>; Vimal Kumar 2 <vkumar134@sapient.com>";
+        for(String person: text.split(";")){
+            String name = person.substring(0, person.indexOf('<'));
+            String email = person.substring(person.indexOf('<')+1,person.indexOf('>'));
+            System.out.println(name+"\t"+email);
+        }
+    }
+}

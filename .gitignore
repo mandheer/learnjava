@@ -1,7 +1,7 @@
 ### Idea ###
 out/
 *.iml
-.idea/
+/.idea/
 
 ### Maven ###
 target/

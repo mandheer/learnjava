@@ -1,24 +1,272 @@
 allprojects  {
   apply plugin: 'maven'
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
+  apply plugin: 'spring-boot'
+  apply plugin: 'io.spring.dependency-management'
+  apply plugin: 'maven-publish'
 
   group = 'in.pabreja'
-version = '0.0.1-SNAPSHOT'
+  version = '0.0.1-SNAPSHOT'
+  
+  repositories {
+      mavenLocal()
+      maven {
+        url "http://repo.maven.apache.org/maven2"
+	}
+	mavenCentral()
+  }
+  
+}
+
+ext {
+    SOLACE_VERSION = '7.2.2.100'
+    MQ_VERSION = '7.1.0.4'
+    SPRING_JMS_VERSION = '4.2.2.RELEASE'
+    COMMONS_LANG_VERSION = '2.4'
+    COMMONS_LANG3_VERSION = '3.1'
+    ACTIVE_MQ_BROKER_VERSION = '5.12.1'
+    JTA_VERSION = '1.1'
+    SPRING_BOOT_ADMIN_VERSION = '1.0.5'
+    SPRING_BATCH_VERSION = '3.0.1.RELEASE'
+    SPRING_INTEGRATION_VERSION = '4.0.3.RELEASE'
+    MARKLOGIC_API_VERSION = '3.0.5'
+    JUNIT_VERSION = '4.12'
+	LOGBACK_GRAILS_VERSION = '0.3.1'
+    MOCKITO_VERSION = '1.10.19'
+    SNAKE_YAML_VERSION = '1.14'
+	CUCUMBER_VERSION = '1.2.4'
+	CODEHAUS_CASTOR_VERSION = '1.3.1'
+	LINGALA_ZIP4J = '1.3.2'
+	JAXB_IMPL = '2.1.9'
+	POWERMOCK_VERSION = '1.6.2'
+	DOM4J_VERSION = '1.6.1'
+	SPRING_JASYPT_VERSION = '1.6'
+	LMAX_DISRUPTOR_VERSION = '3.3.0'
+	SPRING_REACTOR_VERSION = '1.0.1.RELEASE'
+	SPRING_SECURITY_LDAP = '3.2.7.RELEASE'
+	HTTP_CLIENT_VERSION = '4.5.1'
+	APACHE_DS_VERSION = '1.5.5'
+	SPRING_TX_VERSION = '4.2.2.RELEASE'
+	DISRUPTOR_VERSION = '3.3.0'
+	REACTOR_VERSION = '2.0.8.RELEASE'
+	SPRINGFOX_SWAGGER = '2.4.0'
+	FINDBUGS = '3.0.1'
+	EHCACHE_VERSION = '2.10.3'
+	SPRING_CONTEXT_VERSION = '4.2.2.RELEASE'
+	LOGBACK_VERSION='1.1.8'
+	JETTISON_VERSION='1.3.8'
+	AWS_SDK_VERSION='1.11.184'
+	S3MOCK_VERSION='0.2.3'
+}
+
+jar {
+    baseName = 'learnjava'
+    from {
+        (configurations.runtime).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes 'Main-Class': 'in.pabreja.start.Application',
+                'Implementation-Version': version
+    }
+}
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
+}
+
+task(startmessage) << {
+    println 'starting build'
+}
+
+task(printversion) << {
+    println project.version
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '5.0'
 }
 
 subprojects {
   apply plugin: 'java'
+    apply plugin: 'eclipse'
+	apply plugin: 'idea'
+	apply plugin: 'spring-boot'
+    apply plugin: 'io.spring.dependency-management' 
+    apply plugin: 'maven-publish'
+    apply plugin: 'findbugs'
+    apply plugin: 'pmd'
+	apply plugin: 'jacoco'
+	apply plugin: 'maven'
+	
   sourceCompatibility = 1.8
   targetCompatibility = 1.8
 
+  group 'in.delhi'
   
-  repositories {
-    mavenLocal()
-    
-    maven { url "http://repo.maven.apache.org/maven2" }
+    repositories {
+      mavenLocal()
+      maven {
+        url "http://repo.maven.apache.org/maven2"
+	}
 	mavenCentral()
+      }
+      
+      jacoco{
+        // Gradle 1.11 ships with a Jacoco version that doesn't support Java 8
+        toolVersion = "0.7.0.201403182114"
+    }
+      // Location for pushing snapshots and releases
+    publishing {
+    
+    	publications {    
+			mavenJava(MavenPublication) {
+					from components.java
+					artifact sourcesJar
+			}
+		}    	
+    
+        repositories {
+            maven {
+                name "LocalNexus"
+                if (version.contains("-SNAPSHOT")) {
+                    url "https://pabreja.in/content/repositories/delhi-snapshots"
+                } else {
+					url "https://pabreja.in/content/repositories/delhi-releases"
+                }
+               credentials {
+                username mavenUser
+                password mavenPassword
+              }
+            }
+        }
+    }
+    
+   dependencies {
+	compile "ch.qos.logback:logback-classic:${LOGBACK_VERSION}"
+	}
+	
+  task sourcesJar(type: Jar, dependsOn: build) {
+		classifier = 'sources'
+		from sourceSets.main.allSource
+	}
+	
+  eclipse {
+        classpath {
+            containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+            containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+        }
+    }
+    tasks.withType(FindBugs) {
+		reports {
+			xml.enabled = false
+			html.enabled = true
+		}
+	 }
+	 
+	 
+	 pmdMain {
+		reports {
+			xml.enabled false
+			html.enabled true
+		}
+	 }
+  //Cucumber-Gherkin tasks 
+    configurations { 
+	    cucumberRuntime {
+	        extendsFrom testRuntime
+	    }
+		//Integration Test Config
+		integtestCompile.extendsFrom testCompile
+	}	 
+	
+	dependencies {
+		cucumberRuntime 'info.cukes:cucumber-java:1.2.4'
+	}
+	
+  //Gradle cucumber Task
+	task cucumber(type: JavaExec) {
+	    //dependsOn assemble, compileTestJava
+	    main = "cucumber.api.cli.Main"
+		
+		systemProperties =  System.getProperties()	
+	    systemProperties['user.dir'] = workingDir	
+		
+	   	//Default cucumber report name
+		def cucumberReportFile = "cucumber"
+		
+		if(project.hasProperty('cucumberReportName')){
+			cucumberReportFile = cucumberReportName
+		}
+	    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+	    args = ['-f', "junit:build/test-reports/${cucumberReportFile}.xml", 
+	    		'--plugin', 'pretty', 
+	    		'--glue', 'feature', 'src/test/resources']	    
+	}
+		
+	//Cucumber Test Task	
+	test {
+        if (project.hasProperty('excludeTests')) {
+            exclude project.property('excludeTests')
+        }
+        include 'com/macquarie/ofr/mds/**/*Test*'
+		//Exclude cucumber test cases from Junit test cases
+		exclude 'feature/**'
+		
+		jacoco {
+	    	destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+	    }   
+
+    }
+	
+	//Integration Test related configuration	
+	sourceSets {
+		integtest {
+		  java {
+			compileClasspath += main.output
+			compileClasspath += test.output
+			runtimeClasspath += main.output
+			runtimeClasspath += test.output
+			srcDir 'src/integration-test/java'
+		  }
+		}
+	}
+
+	task "integtest"(type: Test, dependsOn: integtestClasses) {
+		systemProperties['testProfile'] =  System.getProperty('testProfile')
+		testClassesDir = sourceSets.integtest.output.classesDir
+		classpath = sourceSets.integtest.runtimeClasspath
+		
+		jacoco {
+			destinationFile = file("$buildDir/jacoco/jacocoIntegTest.exec")
+		}
+   
+	}
+	
   }
 
-  
-  
-  
+buildscript {
+    ext {
+        SPRING_BOOT_VERSION = '1.2.5.RELEASE'
+        SPRING_GRADLE_DEP_MAN_VERSION = '0.5.2.RELEASE'
+        GRADLE_RELEASE_VERSION = '2.3.0'
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${SPRING_BOOT_VERSION}"
+        classpath "io.spring.gradle:dependency-management-plugin:${SPRING_GRADLE_DEP_MAN_VERSION}"
+        classpath "net.researchgate:gradle-release:${GRADLE_RELEASE_VERSION}"
+    }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+processResources.dependsOn(startmessage)
+compileJava.dependsOn(processResources)

@@ -13,9 +13,16 @@ allprojects  {
   repositories {
       mavenLocal()
       maven {
+          url "https://maven.springframework.org/release"
+      }
+      maven {
+          url "https://plugins.gradle.org/m2/"
+      }
+      maven {
         url "http://repo.maven.apache.org/maven2"
-	}
-	mavenCentral()
+      }
+      mavenCentral()
+      jcenter()
   }
   
 }
@@ -90,7 +97,7 @@ task(printversion) << {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '5.0'
+    gradleVersion = '4.9'
 }
 
 subprojects {
@@ -109,16 +116,23 @@ subprojects {
   targetCompatibility = 1.8
 
   group 'in.delhi'
-  
+
     repositories {
       mavenLocal()
+        maven {
+            url "https://maven.springframework.org/release"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+      }
       maven {
         url "http://repo.maven.apache.org/maven2"
-	}
-	mavenCentral()
       }
+        jcenter()
+      mavenCentral()
+    }
       
-      jacoco{
+    jacoco{
         // Gradle 1.11 ships with a Jacoco version that doesn't support Java 8
         toolVersion = "0.7.0.201403182114"
     }
@@ -253,7 +267,7 @@ subprojects {
 
 buildscript {
     ext {
-        SPRING_BOOT_VERSION = '1.2.5.RELEASE'
+        SPRING_BOOT_VERSION = '2.0.3.RELEASE'
         SPRING_GRADLE_DEP_MAN_VERSION = '0.5.2.RELEASE'
         GRADLE_RELEASE_VERSION = '2.3.0'
     }
@@ -262,10 +276,24 @@ buildscript {
         classpath "io.spring.gradle:dependency-management-plugin:${SPRING_GRADLE_DEP_MAN_VERSION}"
         classpath "net.researchgate:gradle-release:${GRADLE_RELEASE_VERSION}"
     }
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://maven.springframework.org/release"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url "http://repo.maven.apache.org/maven2"
+        }
+        mavenCentral()
+        jcenter()
+    }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = '4.9'
 }
 
 processResources.dependsOn(startmessage)

@@ -9,8 +9,8 @@ include ':learn:tutorial:hibernatedemo'
 include ':learn:tutorial'
 include ':learn'
 include ':common'
-include ':aws:practice'
-include ':aws'
+//include ':aws:practice'
+//include ':aws'
 
 project(':research:sample:bookcabs').projectDir = "$rootDir/research/sample/bookcabs" as File
 project(':research:sample').projectDir = "$rootDir/research/sample" as File
@@ -22,5 +22,5 @@ project(':learn:tutorial:hibernatedemo').projectDir = "$rootDir/learn/tutorial/h
 project(':learn:tutorial').projectDir = "$rootDir/learn/tutorial" as File
 project(':learn').projectDir = "$rootDir/learn" as File
 project(':common').projectDir = "$rootDir/common" as File
-project(':aws:practice').projectDir = "$rootDir/aws/practice" as File
-project(':aws').projectDir = "$rootDir/aws" as File
+//project(':aws:practice').projectDir = "$rootDir/aws/practice" as File
+//project(':aws').projectDir = "$rootDir/aws" as File

@@ -1,15 +1,15 @@
-**Problem**
+**Problem** :+1:
 
 Design the data structures for an online book reader system.
 
 **SOLUTION**
 
 Since the problem doesn't describe much about the functionality, let's assume we want to design a basic online reading system which provides the following functionality:
-- User membership creation and extension.
-- Searching the database of books.
-- Reading a book.
-- Only one active user at a time
-- Only one active book by this user.
+* User membership creation and extension.
+* Searching the database of books.
+* Reading a book.
+* Only one active user at a time
+* Only one active book by this user.
 
 To implement these operations we may require many other functions, like get, set, update, and so on. The objects required would likely include User, Book, and Library.
 

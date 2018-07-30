@@ -15,6 +15,10 @@ To implement these operations we may require many other functions, like get, set
 
 The class OnlineReaderSystem represents the body of our program. We would implement the class such that it stores information about all the books, deals with user management, and refreshes the display, but that would make this class rather hefty. Instead, we've chosen to tear off these components into Library, UserManager, and Display classes.
 
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
+
 ```java
  public class OnlineReaderSystem {
  private Library library;

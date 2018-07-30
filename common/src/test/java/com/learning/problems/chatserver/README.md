@@ -33,29 +33,29 @@ The server will consist of a set of machines. Data will be divided up across mac
 The key objects of the system will be a concept of users, conversations, and status messages. We've implemented a User-Management class. If we were looking more at the networking aspects of the problem, or a different component, we might have instead dived into those objects.
 
 ```java
-1 /* UserManager serves as a central place for core user actions. */
-1 public class UserManager {
-2 private static UserManager instance;
-3 /* maps from a user id to a user */
-4 private HashMap<Integer, User> usersByld;
-5
-6 /* maps from an account name to a user */
-7 private HashMap<String, User> usersByAccountName;
-8
-9 /* maps from the user id to an online user */
-10 private HashMap<Integer, User> onlineUsers;
-11
-12 public static UserManager getlnstance() {
-13 if (instance == null) instance = new UserManager();
-14 return instance;
-15 }
-16
-17 public void addUser(User fromUser, String toAccountName) { ... }
-18 public void approveAddRequest(AddRequest req) { ... }
-19 public void rejectAddRequest(AddRequest req) { ... }
-20 public void userSignedOn(String accountName) { ... }
-21 public void userSignedOff(String accountName) { ... }
-22 }
+ /* UserManager serves as a central place for core user actions. */
+ public class UserManager {
+ private static UserManager instance;
+ /* maps from a user id to a user */
+ private HashMap<Integer, User> usersByld;
+
+ /* maps from an account name to a user */
+ private HashMap<String, User> usersByAccountName;
+
+ /* maps from the user id to an online user */
+ private HashMap<Integer, User> onlineUsers;
+
+ public static UserManager getlnstance() {
+ if (instance == null) instance = new UserManager();
+ return instance;
+ }
+
+ public void addUser(User fromUser, String toAccountName) { ... }
+ public void approveAddRequest(AddRequest req) { ... }
+ public void rejectAddRequest(AddRequest req) { ... }
+ public void userSignedOn(String accountName) { ... }
+ public void userSignedOff(String accountName) { ... }
+ }
 ```
 
 The method receivedAddRequest, in the User class, notifies User B that User A has requested to add him. User B approves or rejects the request (via UserManager. approvedAddRequest or rejectAddRequest), and the UserManager takes care of adding the users to each other's contact lists.
@@ -69,127 +69,127 @@ The method sentAddRequest in the User class is called by User-Manager to add an 
 Again, this is just one way of designing these interactions. It is not the only way or even the only "good" way.
 
 ```java
-1 public class User {
-2 private int id;
-3 private UserStatus status null;
-4
-5 /* maps from the other participant's user id to the chat */
-6 private HashMap<Integer, PrlvateChat> privateChats;
-7
-8 /* maps from the group chat id to the group chat */
-9 private ArrayList<GroupChat> groupChats;
-10
-11 /* maps from the other person's user id to the add request */
-12 private HashMap<Integer, AddRequest> receivedAddRequests;
-13
-14 /* maps from the other person's user id to the add request */
-15 private HashMap<Integer, AddRequest> sentAddRequests;
-16
-17 /* maps from the user id to the add request */
-18 private HashMap<Integer, User> contacts;
-19
-20 private String accountName;
-21 private String fullName;
-22
-23 public User(int id, String accountName, String fullName) { … }
-24 public boolean sendMessageToUser(User to, String content){ … }
-25 public boolean sendMessageToGroupChat(int id, String cnt){ … }
-26 public void setStatus(UserStatus status) { ... }
-27 public UserStatus getStatus() { ... }
-28 public boolean addContact(User user) { ... }
-29 public void receivedAddRequest(AddRequest req) { … }
-30 public void sentAddRequest (AddRequest req) { ... }
-31 public void removeAddRequest(AddRequest req) { ... }
-32 public void requestAddUser(String accountName) { … }
-33 public void addConversation(PrivateChat conversation) { … }
-34 public void addConversation(GroupChat conversation) { … }
-35 public int getld() { ... }
-36 public String getAccountName() { ... }
-37 public String getFullName() { ... }
-38 }
+ public class User {
+ private int id;
+ private UserStatus status null;
+
+ /* maps from the other participant's user id to the chat */
+ private HashMap<Integer, PrlvateChat> privateChats;
+
+ /* maps from the group chat id to the group chat */
+ private ArrayList<GroupChat> groupChats;
+
+ /* maps from the other person's user id to the add request */
+ private HashMap<Integer, AddRequest> receivedAddRequests;
+
+ /* maps from the other person's user id to the add request */
+ private HashMap<Integer, AddRequest> sentAddRequests;
+
+ /* maps from the user id to the add request */
+ private HashMap<Integer, User> contacts;
+
+ private String accountName;
+ private String fullName;
+
+ public User(int id, String accountName, String fullName) { … }
+ public boolean sendMessageToUser(User to, String content){ … }
+ public boolean sendMessageToGroupChat(int id, String cnt){ … }
+ public void setStatus(UserStatus status) { ... }
+ public UserStatus getStatus() { ... }
+ public boolean addContact(User user) { ... }
+ public void receivedAddRequest(AddRequest req) { … }
+ public void sentAddRequest (AddRequest req) { ... }
+ public void removeAddRequest(AddRequest req) { ... }
+ public void requestAddUser(String accountName) { … }
+ public void addConversation(PrivateChat conversation) { … }
+ public void addConversation(GroupChat conversation) { … }
+ public int getld() { ... }
+ public String getAccountName() { ... }
+ public String getFullName() { ... }
+ }
 ```
 
 The Conversation class is implemented as an abstract class, since all Conversations must be either a GroupChat or a PrivateChat, and since these two classes each have their own functionality.
 
 ```java
-1 public abstract class Conversation {
-2 protected ArrayList<User> participants;
-3 protected int id;
-4 protected ArrayList<Message> messages;
-5
-6 public ArrayList<Message> getMessages() { … }
-7 public boolean addMessage(Message m) { … }
-8 public int getld() { ... }
-9 }
-10
+ public abstract class Conversation {
+ protected ArrayList<User> participants;
+ protected int id;
+ protected ArrayList<Message> messages;
+
+ public ArrayList<Message> getMessages() { … }
+ public boolean addMessage(Message m) { … }
+ public int getld() { ... }
+ }
+
 ```
 
 ```java
-11 public class GroupChat extends Conversation {
-12 public void removeParticipant(User user) { ... }
-13 public void addParticipant(User user) { ... }
-14 }
-15
+ public class GroupChat extends Conversation {
+ public void removeParticipant(User user) { ... }
+ public void addParticipant(User user) { ... }
+ }
+
 ```
 
 ```java
-16 public class PrivateChat extends Conversation {
-17 public PrivateChat(User user1, User user2) { ...
-18 public User getOtherParticipant(User primary) { … }
-19 }
-20
+ public class PrivateChat extends Conversation {
+ public PrivateChat(User user1, User user2) { ...
+ public User getOtherParticipant(User primary) { … }
+ }
+
 ```
 
 ```java
-21 public class Message {
-22 private String content;
-23 private Date date;
-24 public Message(String content, Date date) { ... }
-25 public String getContent() { ... }
-26 public Date getDate() { … }
-27 }
+ public class Message {
+ private String content;
+ private Date date;
+ public Message(String content, Date date) { ... }
+ public String getContent() { ... }
+ public Date getDate() { … }
+ }
 ```
 
 AddRequest and UserStatus are simple classes with little functionality. Their main purpose is to group data that other classes will act upon.
 
 ```java
-1 public class AddRequest {
-2 private User fromUser;
-3 private user toUser;
-4 private Date date;
-5 Requeststatus status;
-6
-7 public AddRequest(User from, User to, Date date) { … }
-8 public RequestStatus getStatus() { … }
-9 public User getFromUser() { ... }
-10 public User getToUser() { ... }
-11 public Date getDate() { ... }
-12 }
-13
+ public class AddRequest {
+ private User fromUser;
+ private user toUser;
+ private Date date;
+ Requeststatus status;
+
+ public AddRequest(User from, User to, Date date) { … }
+ public RequestStatus getStatus() { … }
+ public User getFromUser() { ... }
+ public User getToUser() { ... }
+ public Date getDate() { ... }
+ }
+
 ```
 
 ```java
-14 public class UserStatus {
-15 private String message;
-16 private UserStatusType type;
-17 public UserStatus(UserStatusType type, String message) f
-18 public UserStatusType getStatusTypeQ { ... }
-19 public String getMessageQ { ... }
-20 }
-21
+ public class UserStatus {
+ private String message;
+ private UserStatusType type;
+ public UserStatus(UserStatusType type, String message) f
+ public UserStatusType getStatusTypeQ { ... }
+ public String getMessageQ { ... }
+ }
+
 ```
 
 ```java
-22 public enum UserStatusType {
-23 Offline, Away, Idle, Available, Busy
-24 }
-25
+ public enum UserStatusType {
+ Offline, Away, Idle, Available, Busy
+ }
+
 ```
 
 ```java
-26 public enum RequestStatus {
-27 Unread, Read, Accepted, Rejected
-28 }
+ public enum RequestStatus {
+ Unread, Read, Accepted, Rejected
+ }
 ```
 The downloadable code attachment provides a more detailed look at these methods, including implementations for the methods shown above.
 

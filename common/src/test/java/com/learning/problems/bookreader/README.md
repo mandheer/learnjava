@@ -15,10 +15,6 @@ To implement these operations we may require many other functions, like get, set
 
 The class OnlineReaderSystem represents the body of our program. We would implement the class such that it stores information about all the books, deals with user management, and refreshes the display, but that would make this class rather hefty. Instead, we've chosen to tear off these components into Library, UserManager, and Display classes.
 
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
-
 ```java
  public class OnlineReaderSystem {
  private Library library;
@@ -194,5 +190,6 @@ The classes for User and Book simply hold data and provide little true functiona
  public void setAccountType(int t) { accountType = t; }
  }
 ```
+
 The decision to tear off user management, library, and display into their own classes, when this functionality could have been in the general OnlineReaderSystem class, is an interesting one. On a very small system, making this decision could make the system overly complex. However, as the system grows, and more and more functionality gets added to OnlineReaderSystem, breaking off such components prevents this main class from getting overwhelmingly lengthy.
 

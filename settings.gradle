@@ -2,23 +2,25 @@ rootProject.name = 'root-build'
 include ':research:sample:bookcabs'
 include ':research:sample'
 include ':research'
+include ':learn:tutorial:algorithm'
 include ':learn:tutorial:designpatterns'
 include ':learn:tutorial:hystrixdemo'
 include ':learn:tutorial:hibernatedemo'
 include ':learn:tutorial'
 include ':learn'
 include ':common'
-include ':aws:practice'
-include ':aws'
+//include ':aws:practice'
+//include ':aws'
 
 project(':research:sample:bookcabs').projectDir = "$rootDir/research/sample/bookcabs" as File
 project(':research:sample').projectDir = "$rootDir/research/sample" as File
 project(':research').projectDir = "$rootDir/research" as File
+project(':learn:tutorial:algorithm').projectDir = "$rootDir/learn/tutorial/algorithm" as File
 project(':learn:tutorial:designpatterns').projectDir = "$rootDir/learn/tutorial/designpatterns" as File
 project(':learn:tutorial:hystrixdemo').projectDir = "$rootDir/learn/tutorial/hystrixdemo" as File
 project(':learn:tutorial:hibernatedemo').projectDir = "$rootDir/learn/tutorial/hibernatedemo" as File
 project(':learn:tutorial').projectDir = "$rootDir/learn/tutorial" as File
 project(':learn').projectDir = "$rootDir/learn" as File
 project(':common').projectDir = "$rootDir/common" as File
-project(':aws:practice').projectDir = "$rootDir/aws/practice" as File
-project(':aws').projectDir = "$rootDir/aws" as File
+//project(':aws:practice').projectDir = "$rootDir/aws/practice" as File
+//project(':aws').projectDir = "$rootDir/aws" as File

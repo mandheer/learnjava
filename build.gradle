@@ -3,9 +3,10 @@ allprojects  {
   apply plugin: 'java'
   apply plugin: 'eclipse'
   apply plugin: 'idea'
-  apply plugin: 'spring-boot'
+  apply plugin: 'org.springframework.boot'
   apply plugin: 'io.spring.dependency-management'
   apply plugin: 'maven-publish'
+//  apply plugin: 'net.researchgate.release'
 
   group = 'in.pabreja'
   version = '0.0.1-SNAPSHOT'
@@ -13,11 +14,21 @@ allprojects  {
   repositories {
       mavenLocal()
       maven {
+          url "https://maven.springframework.org/release"
+      }
+      maven {
+          url "https://plugins.gradle.org/m2/"
+      }
+      maven {
         url "http://repo.maven.apache.org/maven2"
-	}
-	mavenCentral()
+      }
+      mavenCentral()
+      jcenter()
   }
-  
+
+    bootJar {
+        enabled = false
+    }
 }
 
 ext {
@@ -62,6 +73,7 @@ ext {
 }
 
 jar {
+    enabled = true
     baseName = 'learnjava'
     from {
         (configurations.runtime).collect {
@@ -72,6 +84,12 @@ jar {
         attributes 'Main-Class': 'in.pabreja.start.Application',
                 'Implementation-Version': version
     }
+}
+
+bootJar {
+    enabled = false
+    classifier = 'boot'
+    mainClassName = 'in.pabreja.start.Application'
 }
 
 eclipse {
@@ -90,14 +108,14 @@ task(printversion) << {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '5.0'
+    gradleVersion = '4.9'
 }
 
 subprojects {
   apply plugin: 'java'
     apply plugin: 'eclipse'
 	apply plugin: 'idea'
-	apply plugin: 'spring-boot'
+	apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management' 
     apply plugin: 'maven-publish'
     apply plugin: 'findbugs'
@@ -109,16 +127,39 @@ subprojects {
   targetCompatibility = 1.8
 
   group 'in.delhi'
-  
+
+    findbugs {
+        findbugsTest.enabled = false
+        toolVersion = "${FINDBUGS}"
+//        sourceSets = [sourceSets.main]
+        ignoreFailures = true
+        reportsDir = file("$project.buildDir/findbugsReports")
+//        effort = "max"
+//        showProgress = true
+//        reportLevel = "high"
+//        visitors = ["FindSqlInjection", "SwitchFallthrough"]
+//        omitVisitors = ["FindNonShortCircuit"]
+//        includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")
+//        excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")
+//        excludeBugsFilter = file("$rootProject.projectDir/config/findbugs/excludeBugsFilter.xml")
+    }
+
     repositories {
       mavenLocal()
+        maven {
+            url "https://maven.springframework.org/release"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+      }
       maven {
         url "http://repo.maven.apache.org/maven2"
-	}
-	mavenCentral()
       }
+        jcenter()
+      mavenCentral()
+    }
       
-      jacoco{
+    jacoco{
         // Gradle 1.11 ships with a Jacoco version that doesn't support Java 8
         toolVersion = "0.7.0.201403182114"
     }
@@ -253,19 +294,29 @@ subprojects {
 
 buildscript {
     ext {
-        SPRING_BOOT_VERSION = '1.2.5.RELEASE'
-        SPRING_GRADLE_DEP_MAN_VERSION = '0.5.2.RELEASE'
-        GRADLE_RELEASE_VERSION = '2.3.0'
+        SPRING_BOOT_VERSION = '2.0.3.RELEASE'
+        SPRING_GRADLE_DEP_MAN_VERSION = '1.0.6.RELEASE'
+        GRADLE_RELEASE_VERSION = '2.6.0'
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${SPRING_BOOT_VERSION}"
         classpath "io.spring.gradle:dependency-management-plugin:${SPRING_GRADLE_DEP_MAN_VERSION}"
         classpath "net.researchgate:gradle-release:${GRADLE_RELEASE_VERSION}"
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://maven.springframework.org/release"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url "http://repo.maven.apache.org/maven2"
+        }
+        mavenCentral()
+        jcenter()
+    }
 }
 
 processResources.dependsOn(startmessage)

@@ -33,7 +33,7 @@ public interface LogMessage {
 	/**
 	 * info message for successful booking.
 	 */
-	String CAB00001I = "Thank you. Your requestId is {} successfully approved. \nThe cab {} will reach you atleast 15 minutes before your travel time at {}";
+	String CAB00001I = "Thank you. Your requestId is {} successfully approved. %nThe cab {} will reach you atleast 15 minutes before your travel time at {}";
 	
 	/**
 	 * info message for no booking available.

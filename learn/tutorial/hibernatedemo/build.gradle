@@ -6,9 +6,19 @@ dependencies {
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version:'1.0.0.Final'
     compile group: 'javax.transaction', name: 'jta', version:'1.1'
     testCompile group: 'junit', name: 'junit', version:'4.12'
-    compile(group: 'com.oracle', name: 'ojdbc6', version:'11.2.0') {
+    // https://mvnrepository.com/artifact/oracle/ojdbc6
+    compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
+
+//    compile(group: 'com.oracle', name: 'ojdbc6', version:'11.2.0') {
        /* This dependency was originally in the Maven provided scope, but the project was not of type war.
        This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
        Please review and delete this closure when resolved. */
+//    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'http://www.datanucleus.org/downloads/maven2/'
     }
 }
